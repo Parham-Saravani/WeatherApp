@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+.active {
+    background-color: var(--color-darkmain);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.active__unit{
+    font-weight: bold;
+    transform: scale(1.2);
+}
+
+.lightBackground {
+    background: url("../assets/Images/lightbg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.darkBackground {
+    background-image: url("../assets/Images/darkbg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.menuOpen {
+    width: 10rem;
+}
+
+.menu.menuOpen {
+    .dashboard__links {
+        width: 9rem;
+    }
+}
+
+.menu.menuOpen+.content {
+    width: 87%;
+}
+
+.checkbox__input:checked +.toggle-switch--wrapper{
+    background-color: var(--color-lightmain);
+    .toggle__item{
+        transform: translateX(30px);
+    }
+}
+
+@theme {
+    --color-lightmain: rgb(212 212 216 / 0.3);
+    --color-darkmain: rgb(20 20 20 / 0.2);
+    --color-lightGlass: rgba(255 255 255 / 0.1);
+    --color-darkGlass: rgba(0 0 0 / 0.4);
+    --color-lightBorder: rgba(255 255 255 / 0.5);
+    --color-darkBorder: rgba(255 255 255 / 0.1);
+}
+
+@custom-variant dark (&:where(.dark, .dark *));

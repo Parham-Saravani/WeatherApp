@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <script src="./script/script.js" defer></script>
+</head>
+
+<body class="w-full h-screen dark:darkBackground lightBackground backdrop-blur-2xl">
+
+    <!-- SideBar-->
+    <header
+        class="max-lg:hidden border-2 border-lightBorder dark:border-darkBorder bg-lightGlass dark:bg-darkGlass backdrop-blur-3xl h-screen w-16 left-0-0 fixed shadow-2xl rounded-tr-xl rounded-br-xl menu transition-all duration-300">
+        <div class="relative flex flex-col items-center h-full py-2 px-1">
+            <header></header>
+            <main class="flex flex-col  mt-24">
+                <ul class="flex flex-col gap-2">
+                    <li class="">
+                        <a href=""
+                            class="size-13 overflow-hidden flex gap-3.5 items-center rounded-xl dashboard__links transition-normal duration-300 active font-bold text-white"
+                            data-value="home">
+                            <span class="ml-3.5">
+                                <i class="fa-solid fa-house text-2xl"></i>
+                            </span>
+                            Home
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href=""
+                            class="size-13 overflow-hidden flex gap-3.5 items-center rounded-xl dashboard__links transition-normal duration-300 font-bold text-white"
+                            data-value="like">
+                            <span class="ml-3.5">
+                                <i class="fa-solid fa-heart text-2xl"></i>
+                            </span>
+                            Saved
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href=""
+                            class="size-13 overflow-hidden flex gap-3.5 items-center rounded-xl dashboard__links transition-normal duration-300 font-bold text-white"
+                            data-value="setting">
+                            <span class="ml-3.5">
+                                <i class="fa-solid fa-gear text-2xl"></i>
+                            </span>
+                            Settings
+                        </a>
+                    </li>
+                </ul>
+            </main>
+            <button
+                class="flex items-center justify-center h-10 w-10 absolute -right-4 top-0 bottom-0 m-auto rounded-full bg-lightGlass dark:bg-darkGlass dark:text-white cursor-pointer menu__opener transition-transform">
+                <i class="fa-solid fa-angle-left rotate-180 transition-transform duration-300"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main content-->
+    <main
+        class="mr-15 flex flex-col gap-8  max-sm:w-full max-sm:px-3 w-[90%] h-screen mx-auto content transition-all duration-300">
+
+        <!-- home content-->
+        <main class="flex gap-7 mb-10 relative w-full h-full flex-col home__content" data-value="home">
+            <header class="flex justify-between items-center h-10 w-full mt-8">
+                <div class="relative">
+                    <div
+                        class="flex flex-row-reverse gap-3 items-center border-2 border-lightBorder dark:border-darkBorder bg-lightGlass text-white dark:bg-darkGlass rounded-xl px-4 h-13 shadow-2xl">
+                        <input type="text" placeholder="Search city name"
+                            class="text-md placeholder:text-sm placeholder:text-white text-white outline-hidden search__input">
+                        <i class="fa-solid fa-search"></i>
+                    </div>
+                    <div
+                        class="z-40 hidden flex-col backdrop-blur-3xl gap-1 absolute mt-1 overflow-auto rounded-xl bg-darkGlass  dark:text-white h-50 w-full searched__items">
+
+                    </div>
+                </div>
+                <div class="flex gap-2">
+                    <button
+                        class="rounded-full size-11 bg-lightGlass text-xl dark:bg-darkmain text-white cursor-pointer">
+                        <i class="fa-solid fa-map-marker-alt"></i>
+                    </button>
+                    <button
+                        class="rounded-full size-11 bg-lightGlass text-xl dark:bg-darkmain text-white cursor-pointer">
+                        <i class="fa-solid fa-user"></i>
+                    </button>
+                </div>
+            </header>
+            <!-- header part-->
+            <div>
+                <div>
+                    <div class="flex justify-between items-center w-full">
+                        <div class="flex flex-col gap-2">
+                            <p class="cursor-default font-black text-5xl text-white current__city__name"></p>
+                            <div class="flex gap-2 items-center ml-1">
+                                <p class="cursor-default text-xl font-medium text-white date__text"></p>
+                                <p class="cursor-default text-xl font-medium text-white time__text"></p>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="bg-lightGlass dark:bg-darkGlass border-2 border-lightBorder dark:border-darkBorder text-white font-bold rounded-xl p-2 cursor-pointer hover:scale-105 transition-transform duration-300 setdefault__city">Set this city as default</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- middle part-->
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center gap-2">
+                        <p
+                            class="cursor-default flex items-center justify-center text-[170px] h-35 font-light text-white tem__number">
+                        </p>
+                        <div class="flex flex-col gap-2 w-full h-10 ">
+                            <div>
+                                <button
+                                    class="cursor-pointer px-1 text-white text-3xl transition-normal duration-300 temprature__uits active__unit"
+                                    value="celcios">°C</button>
+                                <span class="cursor-default text-white text-3xl ml-2"> | </span>
+                                <button
+                                    class="cursor-pointer px-1 text-white text-3xl transition-normal duration-300 temprature__uits"
+                                    value="fahrenheit">°F</button>
+                            </div>
+                            <p class="ml-2 cursor-default text-white font-black text-3xl current__weather__status"></p>
+                        </div>
+                    </div>
+                    <div class="flex gap-1 items-center">
+                        <img class="h-92 current__status__image" alt="">
+                        <div class="mt-8 flex flex-col gap-4">
+                            <div class="flex items-center gap-2 text-white">
+                                <i class="fa-solid fa-droplet text-3xl"></i>
+                                <div>
+                                    <span class="font-bold text-xl text-white">Humidity: </span>
+                                    <span class="text-white text-[1.2rem] font-light humidity__text"></span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 text-white">
+                                <i class="fa-solid fa-wind text-3xl"></i>
+                                <div>
+                                    <span class="font-bold text-xl text-white">Wind: </span>
+                                    <span class="text-white text-[1.2rem] font-light wind__text"></span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 text-white">
+                                <i class="fa-solid fa-temperature-half text-3xl"></i>
+                                <div>
+                                    <span class="font-bold text-xl text-white">Feels Like: </span>
+                                    <span class="text-white text-[1.2rem] font-light feellike__text"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- bottom part-->
+                <div
+                    class=" bottom-0 px-18 flex items-center justify-between w-full h-75 bg-lightGlass dark:bg-darkGlass border-2 border-lightBorder dark:border-darkBorder rounded-xl nextdays__container">
+
+
+                </div>
+            </div>
+        </main>
+        <!-- favorite content-->
+        <main
+            class="max-sm:w-full hidden max-sm:px-3 w-[90%] h-screen mx-auto content transition-all duration-300 favorite__content" data-value="like">
+        </main>
+        <!-- setting content-->
+        <main
+            class="hidden justify-center items-center py-5 w-[90%] h-screen mx-auto content transition-all duration-300 setting__content " data-value="setting">
+            <div
+                class="py-6 flex flex-col border-2 border-lightBorder dark:border-darkBorder dark:bg-darkGlass  bg-lightGlass backdrop-blur-2xl rounded-xl h-full w-160">
+                <div class="flex justify-between items-center w-full h-12 px-3">
+                    <h1 class="font-bold text-md text-white">Dark theme:</h1>
+                    <label class="flex justify-center w-15 h-8">
+                        <input type="checkbox" id="theme-toggle" class="sr-only checkbox__input darktheme__checkbox">
+                        <div
+                            class="relative cursor-pointer px-0.5 flex justify-start items-center w-full h-full bg-darkmain toggle-switch--wrapper rounded-3xl transition-colors duration-300">
+                            <div
+                                class="absolute rounded-full w-6.5 h-6.5 bg-white transition-transform duration-300 toggle__item">
+
+                            </div>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="w-full h-0.5 bg-lightBorder dark:bg-darkBorder rounded-xl"></div>
+
+                <div class="flex justify-between items-center w-full h-12 px-3">
+                    <p class="font-bold text-md text-white">Temperature unit:</p>
+                    <label class="flex justify-center w-15 h-8">
+                        <input type="checkbox" id="theme-toggle" class="sr-only checkbox__input ">
+                        <div
+                            class="relative cursor-pointer px-0.5 flex justify-start items-center w-full h-full bg-darkmain toggle-switch--wrapper rounded-3xl transition-colors duration-300">
+                            <div
+                                class="absolute rounded-full w-6.5 h-6.5 bg-white transition-transform duration-300 toggle__item ">
+
+                            </div>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="w-full h-0.5 bg-lightBorder dark:bg-darkBorder rounded-xl"></div>
+
+                <div class="flex justify-between items-center w-full h-12 px-3">
+                    <p class="font-bold text-md text-white">Auto refresh:</p>
+                    <label class="flex justify-center w-15 h-8">
+                        <input type="checkbox" id="theme-toggle" class="sr-only checkbox__input">
+                        <div
+                            class="cursor-pointer px-0.5 flex justify-start items-center w-full h-full bg-darkmain toggle-switch--wrapper rounded-3xl transition-colors duration-300">
+                            <div
+                                class="rounded-full w-6.5 h-6.5 bg-white transition-transform duration-300 toggle__item">
+
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </main>
+    </main>
+
+    <!-- Mobile menu -->
+    <div
+        class="lg:hidden flex absolute bottom-3 left-0 right-0 w-42 h-14 mx-auto rounded-xl bg-lightGlass dark:bg-darkGlass border-2 border-lightBorder dark:border-darkBorder">
+        <ul class="px-1 py-0.5 flex gap-0.5 justify-between  w-full h-full leading-3 items-center text-white">
+            <li class="h-full rounded-xl overflow-hidden">
+                <a href=""
+                    class="px-3.5 flex justify-center items-center text-xl active w-full h-full botton__navigation__links  transition-normal duration-300"
+                    data-value="home">
+                    <span>
+                        <i class="fa-solid fa-home"></i>
+                    </span>
+                </a>
+            </li>
+            <li class="h-full rounded-xl overflow-hidden ">
+                <a href=""
+                    class="px-3.5 flex justify-center items-center text-xl h-full botton__navigation__links  transition-normal duration-300"
+                    data-value="favorite">
+                    <span>
+                        <i class="fa-solid fa-heart"></i>
+                    </span>
+                </a>
+            </li>
+            <li class="h-full rounded-xl overflow-hidden ">
+                <a href=""
+                    class="px-3.5 flex justify-center items-center text-xl h-full botton__navigation__links  transition-normal duration-300"
+                    data-value="setting">
+                    <span>
+                        <i class="fa-solid fa-gear"></i>
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+</body>
+
+</html>
