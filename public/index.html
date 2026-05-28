@@ -10,13 +10,12 @@
     <script src="./script/script.js" defer></script>
 </head>
 
-<body class="w-full h-screen dark:darkBackground lightBackground backdrop-blur-2xl">
+<body class="w-full  h-screen lightBackground backdrop-blur-2xl">
 
     <!-- SideBar-->
     <header
         class="max-lg:hidden border-2 border-lightBorder dark:border-darkBorder bg-lightGlass dark:bg-darkGlass backdrop-blur-3xl h-screen w-16 left-0-0 fixed shadow-2xl rounded-tr-xl rounded-br-xl menu transition-all duration-300">
         <div class="relative flex flex-col items-center h-full py-2 px-1">
-            <header></header>
             <main class="flex flex-col  mt-24">
                 <ul class="flex flex-col gap-2">
                     <li class="">
@@ -34,9 +33,9 @@
                             class="size-13 overflow-hidden flex gap-3.5 items-center rounded-xl dashboard__links transition-normal duration-300 font-bold text-white"
                             data-value="like">
                             <span class="ml-3.5">
-                                <i class="fa-solid fa-heart text-2xl"></i>
+                                <i class="fa-solid fa-clock text-2xl"></i>
                             </span>
-                            Saved
+                            History
                         </a>
                     </li>
                     <li class="">
@@ -52,9 +51,14 @@
                 </ul>
             </main>
             <button
-                class="flex items-center justify-center h-10 w-10 absolute -right-4 top-0 bottom-0 m-auto rounded-full bg-lightGlass dark:bg-darkGlass dark:text-white cursor-pointer menu__opener transition-transform">
+                class="flex items-center justify-center h-10 w-10 absolute -right-4 top-0 bottom-0 m-auto rounded-full bg-lightGlass dark:bg-darkGlass text-gray-500 dark:text-white cursor-pointer menu__opener transition-transform">
                 <i class="fa-solid fa-angle-left rotate-180 transition-transform duration-300"></i>
             </button>
+            <footer class="flex overflow-hidden items-center justify-center absolute px-1 bottom-5">
+                <div>
+                    <p class="text-white opacity-0 font-bold menu__temp"></p>
+                </div>
+            </footer>
         </div>
     </header>
 
@@ -63,7 +67,7 @@
         class="mr-15 flex flex-col gap-8  max-sm:w-full max-sm:px-3 w-[90%] h-screen mx-auto content transition-all duration-300">
 
         <!-- home content-->
-        <main class="flex gap-7 mb-10 relative w-full h-full flex-col home__content" data-value="home">
+        <main class="flex animate-fadeIn gap-7  w-full h-full flex-col home__content" data-value="home">
             <header class="flex justify-between items-center h-10 w-full mt-8">
                 <div class="relative">
                     <div
@@ -88,9 +92,9 @@
                     </button>
                 </div>
             </header>
-            <!-- header part-->
-            <div>
-                <div>
+            <div class="relative h-full mt-2.5 home__page__main__content ">
+                <!-- header part-->
+                <div class="h-[10%]">
                     <div class="flex justify-between items-center w-full">
                         <div class="flex flex-col gap-2">
                             <p class="cursor-default font-black text-5xl text-white current__city__name"></p>
@@ -100,15 +104,17 @@
                             </div>
                         </div>
                         <div>
-                            <button class="bg-lightGlass dark:bg-darkGlass border-2 border-lightBorder dark:border-darkBorder text-white font-bold rounded-xl p-2 cursor-pointer hover:scale-105 transition-transform duration-300 setdefault__city">Set this city as default</button>
+                            <button
+                                class="bg-lightGlass dark:bg-darkGlass border-2 border-lightBorder dark:border-darkBorder text-white font-bold rounded-xl p-2 cursor-pointer hover:scale-105 transition-transform duration-300 setdefault__city">Set
+                                this city as default</button>
                         </div>
                     </div>
                 </div>
                 <!-- middle part-->
-                <div class="flex justify-between items-center">
+                <div class="h-[45%] flex justify-between items-center">
                     <div class="flex items-center gap-2">
                         <p
-                            class="cursor-default flex items-center justify-center text-[170px] h-35 font-light text-white tem__number">
+                            class="cursor-default flex items-center justify-center text-[170px] h-35 font-light text-white tem__number ">
                         </p>
                         <div class="flex flex-col gap-2 w-full h-10 ">
                             <div>
@@ -152,19 +158,20 @@
                 </div>
                 <!-- bottom part-->
                 <div
-                    class=" bottom-0 px-18 flex items-center justify-between w-full h-75 bg-lightGlass dark:bg-darkGlass border-2 border-lightBorder dark:border-darkBorder rounded-xl nextdays__container">
-
-
+                    class="absolute bottom-5 px-18 flex items-center justify-between w-full h-[45%] bg-lightGlass dark:bg-darkGlass border-2 border-lightBorder dark:border-darkBorder rounded-xl nextdays__container">
+               
                 </div>
             </div>
         </main>
-        <!-- favorite content-->
+        <!-- history content-->
         <main
-            class="max-sm:w-full hidden max-sm:px-3 w-[90%] h-screen mx-auto content transition-all duration-300 favorite__content" data-value="like">
+            class="max-sm:w-full animate-fadeIn hidden max-sm:px-3 w-[90%] h-screen mx-auto content transition-all duration-300 history__content"
+            data-value="like">
         </main>
         <!-- setting content-->
         <main
-            class="hidden justify-center items-center py-5 w-[90%] h-screen mx-auto content transition-all duration-300 setting__content " data-value="setting">
+            class="hidden animate-fadeIn justify-center items-center py-5 w-[90%] h-screen mx-auto content transition-all duration-300 setting__content "
+            data-value="setting">
             <div
                 class="py-6 flex flex-col border-2 border-lightBorder dark:border-darkBorder dark:bg-darkGlass  bg-lightGlass backdrop-blur-2xl rounded-xl h-full w-160">
                 <div class="flex justify-between items-center w-full h-12 px-3">

@@ -17,7 +17,7 @@ const windText = document.querySelector('.wind__text')
 const feelsLikeText = document.querySelector('.feellike__text')
 const currentStatusImage = document.querySelector('.current__status__image')
 const currentWeatherStatus = document.querySelector('.current__weather__status')
-
+const menuTemprature = document.querySelector('.menu__temp')
 // setDefaul city 
 const setDefaultCityBtn = document.querySelector('.setdefault__city')
 
@@ -25,8 +25,9 @@ const setDefaultCityBtn = document.querySelector('.setdefault__city')
 const darkModeCheckbox = document.querySelector('.darktheme__checkbox')
 
 // Page content
-const homeContent = document.querySelector('.home__content')
-const favoriteContent = document.querySelector('.favorite__content')
+const homeContent = document.querySelector('.home__content');
+const homePageMainContent = document.querySelector('.home__page__main__content')
+const historyContent = document.querySelector('.history__content')
 const settingContent = document.querySelector('.setting__content')
 
 // home page
@@ -274,6 +275,7 @@ const days = [
     "Friday",
     "Saturday"
 ];
+const userSearchedHistory = [];
 
 //* helper functions
 function closeSearch() {
@@ -284,29 +286,41 @@ function closeSearch() {
 
 //? Flags
 let isMenuOpen = false;
-let theme = 'light';
 let currentTemp = 28;
 
 
 //! setDefaul City Handler
-function setDefaultCityHandler(){
+function setDefaultCityHandler() {
     const title = currentCityName.textContent.split(',')
     localStorage.setItem('defaultCity', title[0])
-    
+
 }
 //! page Load function
 function onPageLoad() {
     dateTimeHandler();
     defaultCityStatusHandler();
-    themeHandler()
+    themeHandler();
 }
 //! Take default city from localstorage and load data
 function defaultCityStatusHandler() {
     const isAvailble = localStorage.getItem('defaultCity');
-    if (!isAvailble) return;
+    if (!isAvailble) {
+        const randomNumber = Math.floor(Math.random() * cities.length)
+        createElementHandler(cities[randomNumber]);
+        return;
+    };
     const data = cities.find(function (item) {
         return item.name === isAvailble;
     });
+    if (!data) {
+        homePageMainContent.innerHTML = `
+        <div>
+            <p class="font-black text-white text-3xl">City not found!!</p>
+        </div>
+        `;
+        homePageMainContent.className += ' flex justify-center items-center'
+        return;
+    }
     createElementHandler(data)
 }
 function createElementHandler(data) {
@@ -319,12 +333,13 @@ function createElementHandler(data) {
     tempText.textContent = data.temp
     humidityText.textContent = `${data.humidity}%`
     windText.textContent = `${data.wind} km/h`
-    feelsLikeText.textContent = `${data.feelsLike}°`
-    currentStatusImage.setAttribute('src', `${data.icon}`)
+    feelsLikeText.textContent = `${data.feelsLike}°`;
+    menuTemprature.textContent = `${data.temp}°C`;
+    currentStatusImage.setAttribute('src', `${data.icon}`);
     data.forecast.forEach(function (item) {
         nextDaysContainer.insertAdjacentHTML('beforeend',
             `
-        <div class="flex flex-col  items-center justify-between">
+        <div class="flex animate-fadeIn flex-col  items-center justify-between">
             <p class="text-white font-black text-xl">${item.day}</p>
             <img class="size-44" src="${item.icon}" alt="">
             <div class="flex flex-col items-center">
@@ -335,8 +350,8 @@ function createElementHandler(data) {
         `
         )
     })
-
 }
+
 
 // Menu Handler
 function menuHandler() {
@@ -367,7 +382,7 @@ function menuItemsHandler(event) {
         event.target.parentElement.parentElement.classList.add('active')
         const data = event.target.parentElement.parentElement.dataset.value;
         console.log(data);
-        
+
         moveTOPagesHandler(data)
         return;
     }
@@ -375,7 +390,7 @@ function menuItemsHandler(event) {
         event.target.classList.add('active');
         const data = event.target.dataset.value;
         console.log(data);
-        
+
         moveTOPagesHandler(data)
 
         return;
@@ -386,19 +401,23 @@ function moveTOPagesHandler(value) {
         case 'home': {
             homeContent.classList.remove('hidden');
             homeContent.classList.add('flex');
-            favoriteContent.classList.remove('flex')
-            favoriteContent.classList.add('hidden')
+            historyContent.classList.remove('flex')
+            historyContent.classList.add('hidden')
             settingContent.classList.remove('flex');
             settingContent.classList.add('hidden');
+            menuTemprature.classList.add('opacity-0')
+            menuTemprature.classList.remove('animate-fadeIn')
             break;
         }
         case 'like': {
-            favoriteContent.classList.remove('hidden')
-            favoriteContent.classList.add('flex')
+            historyContent.classList.remove('hidden')
+            historyContent.classList.add('flex')
             homeContent.classList.remove('flex');
             homeContent.classList.add('hidden');
             settingContent.classList.remove('flex');
             settingContent.classList.add('hidden');
+            menuTemprature.classList.add('animate-fadeIn')
+            menuTemprature.classList.remove('opacity-0')
             break;
         }
         case 'setting': {
@@ -406,8 +425,10 @@ function moveTOPagesHandler(value) {
             settingContent.classList.add('flex');
             homeContent.classList.remove('flex');
             homeContent.classList.add('hidden');
-            favoriteContent.classList.remove('flex')
-            favoriteContent.classList.add('hidden')
+            historyContent.classList.remove('flex')
+            historyContent.classList.add('hidden')
+            menuTemprature.classList.add('animate-fadeIn')
+            menuTemprature.classList.remove('opacity-0')
             break;
         }
     }
@@ -430,13 +451,15 @@ function calculateTemprature(value) {
         case 'celcios': {
             const celcios = calculateCelcios(currentTemp);
             tempText.textContent = Math.floor(celcios);
-            currentTemp = celcios
+            currentTemp = celcios;
+            localStorage.setItem('unit', 'celcios')
             break;
         };
         case 'fahrenheit': {
             const faren = calculateFarenheit(currentTemp)
             tempText.textContent = Math.floor(faren);
             currentTemp = faren;
+            localStorage.setItem('unit', 'fahrenheit')
             break;
         }
     }
@@ -482,7 +505,7 @@ function searchHandler() {
     const searched = []
     const value = searchInput.value.trim()
     cities.forEach(function (city) {
-        if (city.name.includes(value)) {
+        if (city.name.includes(value.toLowerCase()) || city.name.includes(value.toUpperCase())) {
             searched.push(city)
         }
     })
@@ -530,11 +553,15 @@ tempratureUnitBtns.forEach(item => {
 function darkTheme() {
     localStorage.setItem('darkMode', 'enable')
     document.documentElement.classList.add('dark')
-    darkModeCheckbox.checked = true
+    darkModeCheckbox.checked = true;
+    document.body.classList.remove('lightBackground')
+    document.body.classList.add('darkBackground')
 }
 function lightTheme() {
     localStorage.setItem('darkMode', 'disable')
     document.documentElement.classList.remove('dark');
+    document.body.classList.remove('darkBackground')
+    document.body.classList.add('lightBackground')
 }
 function darkThemeHandler(event) {
     if (event.target.checked) {
@@ -543,20 +570,22 @@ function darkThemeHandler(event) {
     }
     lightTheme();
 }
-function themeHandler(){
+function themeHandler() {
     const isDarkModeEnable = localStorage.getItem('darkMode');
-    switch(isDarkModeEnable){
-        case 'enable':{
+    switch (isDarkModeEnable) {
+        case 'enable': {
             darkTheme();
             break;
         };
-        case 'disable':{
+        case 'disable': {
             lightTheme();
             return;
         };
-        default:{
+        default: {
             lightTheme();
         }
     }
 }
 darkModeCheckbox.addEventListener('click', darkThemeHandler)
+
+
