@@ -7,14 +7,13 @@
     <title>Weather App</title>
     <link rel="stylesheet" href="./styles/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <script src="./script/script.js" defer></script>
 </head>
 
 <body class="w-full  h-screen lightBackground backdrop-blur-2xl">
 
     <!-- SideBar-->
     <header
-        class="max-lg:hidden border-2 border-lightBorder dark:border-darkBorder bg-lightGlass dark:bg-darkGlass backdrop-blur-3xl h-screen w-16 left-0-0 fixed shadow-2xl rounded-tr-xl rounded-br-xl menu transition-all duration-300">
+        class="max-xl:hidden border-2 border-lightBorder dark:border-darkBorder bg-lightGlass dark:bg-darkGlass backdrop-blur-3xl h-screen w-16 left-0-0 fixed shadow-2xl rounded-tr-xl rounded-br-xl menu transition-all duration-300">
         <div class="relative flex flex-col items-center h-full py-2 px-1">
             <main class="flex flex-col  mt-24">
                 <ul class="flex flex-col gap-2">
@@ -64,16 +63,16 @@
 
     <!-- Main content-->
     <main
-        class="mr-15 flex flex-col gap-8  max-sm:w-full max-sm:px-3 w-[90%] h-screen mx-auto content transition-all duration-300">
+        class="max-xl:px-5 max-2xl:w-[90%] max-xl:mr-0 max-xl:mx-0 max-xl:w-full max-sm:ml-0 mr-10 flex flex-col max-sm:w-full w-[92%] h-screen mx-auto content transition-all duration-300">
 
         <!-- home content-->
-        <main class="flex animate-fadeIn gap-7  w-full h-full flex-col home__content" data-value="home">
+        <main class=" flex animate-fadeIn gap-7  w-full h-full flex-col home__content" data-value="home">
             <header class="flex justify-between items-center h-10 w-full mt-8">
                 <div class="relative">
                     <div
-                        class="flex flex-row-reverse gap-3 items-center border-2 border-lightBorder dark:border-darkBorder bg-lightGlass text-white dark:bg-darkGlass rounded-xl px-4 h-13 shadow-2xl">
+                        class="max-sm:pl-3 flex flex-row-reverse gap-3 items-center border-2 border-lightBorder dark:border-darkBorder bg-lightGlass text-white dark:bg-darkGlass rounded-xl px-4 h-13 shadow-2xl">
                         <input type="text" placeholder="Search city name"
-                            class="text-md placeholder:text-sm placeholder:text-white text-white outline-hidden search__input">
+                            class="max-sm:w-34 text-md placeholder:text-sm placeholder:text-white text-white outline-hidden search__input">
                         <i class="fa-solid fa-search"></i>
                     </div>
                     <div
@@ -81,76 +80,79 @@
 
                     </div>
                 </div>
-                <div class="flex gap-2">
-                    <button
-                        class="rounded-full size-11 bg-lightGlass text-xl dark:bg-darkmain text-white cursor-pointer">
-                        <i class="fa-solid fa-map-marker-alt"></i>
-                    </button>
-                    <button
-                        class="rounded-full size-11 bg-lightGlass text-xl dark:bg-darkmain text-white cursor-pointer">
-                        <i class="fa-solid fa-user"></i>
-                    </button>
-                </div>
+
+                <button class="rounded-full size-11 bg-lightGlass text-xl dark:bg-darkmain text-white cursor-pointer">
+                    <i class="fa-solid fa-map-marker-alt"></i>
+                </button>
+
             </header>
             <div class="relative h-full mt-2.5 home__page__main__content ">
                 <!-- header part-->
                 <div class="h-[10%]">
                     <div class="flex justify-between items-center w-full">
                         <div class="flex flex-col gap-2">
-                            <p class="cursor-default font-black text-5xl text-white current__city__name"></p>
+                            <p
+                                class="max-sm:text-2xl max-xl:text-5xl cursor-default font-black text-5xl text-white current__city__name">
+                            </p>
                             <div class="flex gap-2 items-center ml-1">
-                                <p class="cursor-default text-xl font-medium text-white date__text"></p>
-                                <p class="cursor-default text-xl font-medium text-white time__text"></p>
+                                <p class="max-sm:text-xs cursor-default text-xl font-medium text-white date__text"></p>
+                                <p class="max-sm:text-xs cursor-default text-xl font-medium text-white time__text"></p>
                             </div>
                         </div>
                         <div>
                             <button
-                                class="bg-lightGlass dark:bg-darkGlass border-2 border-lightBorder dark:border-darkBorder text-white font-bold rounded-xl p-2 cursor-pointer hover:scale-105 transition-transform duration-300 setdefault__city">Set
-                                this city as default</button>
+                                class="max-sm:text-xs bg-lightGlass dark:bg-darkGlass border-2 border-lightBorder dark:border-darkBorder text-white font-bold rounded-xl p-2 cursor-pointer hover:scale-105 transition-transform duration-300 setdefault__city">Set
+                                default</button>
                         </div>
                     </div>
                 </div>
                 <!-- middle part-->
-                <div class="h-[45%] flex justify-between items-center">
+                <div
+                    class="max-sm:h-[35%] max-sm:mb-10 max-sm:flex-col max-sm:justify-center max-sm:items-start h-[45%] flex justify-between items-center">
                     <div class="flex items-center gap-2">
                         <p
-                            class="cursor-default flex items-center justify-center text-[170px] h-35 font-light text-white tem__number ">
+                            class="max-sm:text-6xl max-lg:text-8xl cursor-default flex items-center justify-center text-[170px] h-35 font-light text-white tem__number ">
                         </p>
                         <div class="flex flex-col gap-2 w-full h-10 ">
                             <div>
                                 <button
-                                    class="cursor-pointer px-1 text-white text-3xl transition-normal duration-300 temprature__uits active__unit"
+                                    class="max-sm:text-xl cursor-pointer px-1 text-white text-3xl transition-normal duration-300 temprature__uits active__unit"
                                     value="celcios">°C</button>
                                 <span class="cursor-default text-white text-3xl ml-2"> | </span>
                                 <button
-                                    class="cursor-pointer px-1 text-white text-3xl transition-normal duration-300 temprature__uits"
+                                    class="max-sm:text-xl cursor-pointer px-1 text-white text-3xl transition-normal duration-300 temprature__uits"
                                     value="fahrenheit">°F</button>
                             </div>
-                            <p class="ml-2 cursor-default text-white font-black text-3xl current__weather__status"></p>
+                            <p
+                                class="max-sm:text-xl ml-2 cursor-default text-white font-black text-3xl current__weather__status">
+                            </p>
                         </div>
                     </div>
-                    <div class="flex gap-1 items-center">
-                        <img class="h-92 current__status__image" alt="">
+                    <div class="max-sm:w-full max-sm:flex-row-reverse max-sm:justify-between max-sm:items-center flex gap-1 items-center">
+                        <img class="max-sm:h-30 max-md:h-50 max-xl:h-80 h-92 current__status__image" alt="">
                         <div class="mt-8 flex flex-col gap-4">
                             <div class="flex items-center gap-2 text-white">
-                                <i class="fa-solid fa-droplet text-3xl"></i>
+                                <i class="max-sm:text-2xl fa-solid fa-droplet text-3xl"></i>
                                 <div>
-                                    <span class="font-bold text-xl text-white">Humidity: </span>
-                                    <span class="text-white text-[1.2rem] font-light humidity__text"></span>
+                                    <span class="max-sm:text-xs font-bold text-xl text-white">Humidity: </span>
+                                    <span
+                                        class="max-sm:text-[0.8rem] text-white text-[1.2rem] font-light humidity__text"></span>
                                 </div>
                             </div>
                             <div class="flex items-center gap-2 text-white">
-                                <i class="fa-solid fa-wind text-3xl"></i>
+                                <i class="max-sm:text-2xl fa-solid fa-wind text-3xl"></i>
                                 <div>
-                                    <span class="font-bold text-xl text-white">Wind: </span>
-                                    <span class="text-white text-[1.2rem] font-light wind__text"></span>
+                                    <span class="max-sm:text-xs font-bold text-xl text-white">Wind: </span>
+                                    <span
+                                        class="max-sm:text-[0.8rem] text-white text-[1.2rem] font-light wind__text"></span>
                                 </div>
                             </div>
                             <div class="flex items-center gap-2 text-white">
-                                <i class="fa-solid fa-temperature-half text-3xl"></i>
+                                <i class="max-sm:text-2xl fa-solid fa-temperature-half text-3xl"></i>
                                 <div>
-                                    <span class="font-bold text-xl text-white">Feels Like: </span>
-                                    <span class="text-white text-[1.2rem] font-light feellike__text"></span>
+                                    <span class="max-sm:text-xs font-bold text-xl text-white">Feels Like: </span>
+                                    <span
+                                        class="max-sm:text-[0.8rem] text-white text-[1.2rem] font-light feellike__text"></span>
                                 </div>
                             </div>
                         </div>
@@ -158,8 +160,8 @@
                 </div>
                 <!-- bottom part-->
                 <div
-                    class="absolute bottom-5 px-18 flex items-center justify-between w-full h-[45%] bg-lightGlass dark:bg-darkGlass border-2 border-lightBorder dark:border-darkBorder rounded-xl nextdays__container">
-               
+                    class="max-sm:h-[40%] max-sm:overflow-auto max-sm:mb-12 max-sm:gap-1 max-md:gap-x-20 max-md:justify-center max-md:flex-wrap max-lg:px-2 max-xl:px-6 z-50 absolute bottom-5 px-18 flex items-center justify-between w-full h-[45%] bg-lightGlass dark:bg-darkGlass border-2 border-lightBorder dark:border-darkBorder rounded-xl nextdays__container">
+
                 </div>
             </div>
         </main>
@@ -167,6 +169,9 @@
         <main
             class="max-sm:w-full animate-fadeIn hidden max-sm:px-3 w-[90%] h-screen mx-auto content transition-all duration-300 history__content"
             data-value="like">
+            <div class="overflow-hidden w-ful">
+
+            </div>
         </main>
         <!-- setting content-->
         <main
@@ -225,7 +230,7 @@
 
     <!-- Mobile menu -->
     <div
-        class="lg:hidden flex absolute bottom-3 left-0 right-0 w-42 h-14 mx-auto rounded-xl bg-lightGlass dark:bg-darkGlass border-2 border-lightBorder dark:border-darkBorder">
+        class="z-50 xl:hidden flex absolute bottom-3 left-0 right-0 w-42 h-14 mx-auto rounded-xl bg-lightGlass dark:bg-darkGlass border-2 border-lightBorder dark:border-darkBorder">
         <ul class="px-1 py-0.5 flex gap-0.5 justify-between  w-full h-full leading-3 items-center text-white">
             <li class="h-full rounded-xl overflow-hidden">
                 <a href=""
@@ -257,7 +262,7 @@
         </ul>
     </div>
 
-
+    <script src="./Scripts/script.js"></script>
 </body>
 
 </html>

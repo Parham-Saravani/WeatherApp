@@ -4,7 +4,8 @@
     background-color: var(--color-darkmain);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
-.active__unit{
+
+.active__unit {
     font-weight: bold;
     transform: scale(1.2);
 }
@@ -14,6 +15,8 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    width: 100%;
+    height: 100%;
 }
 
 .darkBackground {
@@ -21,6 +24,8 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    width: 100%;
+    height: 100%;
 }
 
 .menuOpen {
@@ -34,12 +39,13 @@
 }
 
 .menu.menuOpen+.content {
-    width: 87%;
+    width: 84%;
 }
 
-.checkbox__input:checked +.toggle-switch--wrapper{
+.checkbox__input:checked+.toggle-switch--wrapper {
     background-color: var(--color-lightmain);
-    .toggle__item{
+
+    .toggle__item {
         transform: translateX(30px);
     }
 }
@@ -52,12 +58,18 @@
     --color-lightBorder: rgba(255 255 255 / 0.5);
     --color-darkBorder: rgba(255 255 255 / 0.1);
 
-    --animate-fadeIn : fadeIn 1s ease;
-    @keyframes fadeIn{
-        0%{
+    --color-stickymenydark: rgba(0 0 0);
+    --color-stickymenylight: rgba(255 255 255);
+
+
+    --animate-fadeIn: fadeIn 1s ease;
+
+    @keyframes fadeIn {
+        0% {
             opacity: 0;
         }
-        100%{
+
+        100% {
             opacity: 1;
         }
     }
