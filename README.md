@@ -23,15 +23,15 @@ This project simulates a weather application using local JavaScript data while f
 
 ### Desktop - Dark Mode
 
-![Desktop Dark](./screenshots/desktop-dark.png)
+![Desktop Dark](Images/desktop-dark.png.png)
 
 ### Desktop - Light Mode
 
-![Desktop Light](./screenshots/desktop-light.png)
+![Desktop Light](Images/desktop-light.png.png)
 
 ### Mobile View
 
-![Mobile View](./screenshots/mobile-dark.png)
+![Mobile View](Images/mobile-light.png.png)
 
 ---
 
