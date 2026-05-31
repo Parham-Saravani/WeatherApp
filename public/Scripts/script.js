@@ -277,13 +277,11 @@ const days = [
     "Friday",
     "Saturday"
 ];
-const userSearchedHistory = [];
 
 //* helper functions
 function closeSearch() {
     searchItemsContainer.classList.remove('flex');
     searchItemsContainer.classList.add('hidden');
-    searchInput.value = '';
 }
 
 //? Flags
@@ -500,27 +498,36 @@ function TimeHandler() {
 
 // search handler
 function searchHandler() {
+
     searchItemsContainer.classList.remove('hidden')
     searchItemsContainer.classList.add('flex')
-    const searched = []
-    const value = searchInput.value.trim()
-    cities.forEach(function (city) {
-        if (city.name.includes(value.toLowerCase()) || city.name.includes(value.toUpperCase())) {
-            searched.push(city)
-        }
-    })
-
+    let searched = []
+    const value = searchInput.value.trim().toLowerCase()
+    if (value) {
+        searched = cities.filter(city => city.name.toLocaleLowerCase().includes(value))
+        createSearchedElements(searched);
+        return
+    } else {
+        searched = [];
+        createSearchedElements(searched);
+    }
+}
+function createSearchedElements(searched) {
+    searchItemsContainer.innerHTML = '';
+    if (!searched.length) {
+        searchItemsContainer.innerHTML = `<p class="text-white flex items-center justify-center w-full h-full">City not found</p>`;
+    }
     searched.forEach(function (item) {
         searchItemsContainer.insertAdjacentHTML('beforeend',
             `
-                <div class="z-50 backdrop-blur-3xl relative pl-1.5 w-full min-h-13 bg-lightmain cursor-pointer " data-value="${item.name}">
-                        <p class="w-33 text-white mt-1 font-bold block" data-value="${item.name}">${item.name}, ${item.country}</p>
-                        <p class="text-sm text-white" data-value="${item.name}">${item.condition}</p>
-                        <div class="font-bold absolute right-2 bottom-1 text-white" data-value="${item.name}">
-                            ${item.temp}°C
-                        </div>
-                </div>            
-                `
+            <div class="z-50 backdrop-blur-3xl relative pl-1.5 w-full min-h-13 bg-lightmain cursor-pointer " data-value="${item.name}">
+                    <p class="w-33 text-white mt-1 font-bold block" data-value="${item.name}">${item.name}, ${item.country}</p>
+                    <p class="text-sm text-white" data-value="${item.name}">${item.condition}</p>
+                    <div class="font-bold absolute right-2 bottom-1 text-white" data-value="${item.name}">
+                        ${item.temp}°C
+                    </div>
+            </div>            
+            `
         )
     })
 }
@@ -535,6 +542,7 @@ function searchCityHandler(event) {
 menuOpener.addEventListener('click', menuHandler);
 document.addEventListener('DOMContentLoaded', onPageLoad);
 searchInput.addEventListener('input', searchHandler);
+searchInput.addEventListener('blur', closeSearch)
 searchItemsContainer.addEventListener('click', searchCityHandler)
 setDefaultCityBtn.addEventListener('click', setDefaultCityHandler)
 menuItems.forEach(function (item) {

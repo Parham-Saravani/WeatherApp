@@ -58,8 +58,8 @@
     --color-lightBorder: rgba(255 255 255 / 0.5);
     --color-darkBorder: rgba(255 255 255 / 0.1);
 
-    --color-stickymenydark: rgba(0 0 0);
-    --color-stickymenylight: rgba(255 255 255);
+    --color-stickymenydark: rgba(0 0 0 / 0.7);
+    --color-stickymenylight: rgba(255 255 255 / 0.7);
 
 
     --animate-fadeIn: fadeIn 1s ease;
