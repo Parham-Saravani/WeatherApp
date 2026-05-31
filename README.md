@@ -2,6 +2,8 @@
 
 A modern and responsive weather dashboard built with JavaScript and Tailwind CSS.
 
+fore live demo visit https://weather-dashboard-liart-seven.vercel.app/
+
 This project simulates a weather application using local JavaScript data while focusing on frontend development concepts such as responsive design, theme switching, dynamic UI updates, and browser storage.
 ---
 
