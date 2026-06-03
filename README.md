@@ -6,7 +6,19 @@ A modern and responsive weather dashboard built with JavaScript and Tailwind CSS
 
 👉 https://weather-dashboard-liart-seven.vercel.app/
 
+---
+
+## Technologies Used
+
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow)
+![HTML5](https://img.shields.io/badge/HTML5-Markup-orange)
+![CSS3](https://img.shields.io/badge/CSS3-Styling-blue)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v4-38BDF8)
+
+---
+
 This project simulates a weather application using local JavaScript data while focusing on frontend development concepts such as responsive design, theme switching, dynamic UI updates, and browser storage.
+
 ---
 
 ## Features
@@ -36,15 +48,6 @@ This project simulates a weather application using local JavaScript data while f
 ### Mobile View
 
 ![Mobile View](Images/mobile-light.png.png)
-
----
-
-## Technologies Used
-
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow)
-![HTML5](https://img.shields.io/badge/HTML5-Markup-orange)
-![CSS3](https://img.shields.io/badge/CSS3-Styling-blue)
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v4-38BDF8)
 
 ---
 
